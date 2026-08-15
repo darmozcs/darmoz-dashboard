@@ -1,0 +1,4 @@
+export const EXAMPLE_LIST = "EXAMPLE_LIST";
+export const EXAMPLE_DETAIL = "EXAMPLE_DETAIL";
+
+export const AUTH_SESSION = "AUTH_SESSION";

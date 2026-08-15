@@ -1,0 +1,46 @@
+{
+  "languages": {
+    "es": "Spanish",
+    "en": "English",
+    "select": "Select language"
+  },
+  "app": {
+    "title": "Nexora",
+    "description": "Marketplace platform"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "user": "Users",
+    "roles": "Roles",
+    "permissions": "Permissions",
+    "applications": "Applications",
+    "audit": "Audit",
+    "logout": "Logout"
+  },
+  "login": {
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Your password",
+    "submit": "Sign in"
+  },
+  "auth": {
+    "verifying": "Verifying session..."
+  },
+  "modals": {
+    "labels": {
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+  "table": {
+    "empty": {
+      "title": "No results",
+      "description": "There is no data to show right now"
+    },
+    "error": {
+      "title": "Error loading data",
+      "description": "The data could not be loaded. Please try again."
+    }
+  }
+}

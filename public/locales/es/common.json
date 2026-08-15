@@ -1,0 +1,46 @@
+{
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "select": "Seleccionar idioma"
+  },
+  "app": {
+    "title": "Nexora",
+    "description": "Plataforma de marketplace"
+  },
+  "menu": {
+    "dashboard": "Panel",
+    "user": "Usuarios",
+    "roles": "Roles",
+    "permissions": "Permisos",
+    "applications": "Aplicaciones",
+    "audit": "Auditoría",
+    "logout": "Cerrar sesión"
+  },
+  "login": {
+    "email": "Correo electrónico",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Tu contraseña",
+    "submit": "Iniciar sesión"
+  },
+  "auth": {
+    "verifying": "Verificando sesión..."
+  },
+  "modals": {
+    "labels": {
+      "confirm": "Confirmar",
+      "cancel": "Cancelar"
+    }
+  },
+  "table": {
+    "empty": {
+      "title": "Sin resultados",
+      "description": "No hay datos que mostrar en este momento"
+    },
+    "error": {
+      "title": "Error al cargar los datos",
+      "description": "No se pudieron cargar los datos. Inténtalo de nuevo."
+    }
+  }
+}
