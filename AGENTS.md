@@ -331,25 +331,30 @@ export const useCreateExampleMutation = () =>
 ## Table container example
 
 ```ts
-import { BasicTable } from '@/libs/ui/table'
-import { usePaginate } from '@/modules/common/hooks'
+import { useExampleQuery } from '@/DAL'
+import { DataTable } from '@/libs/ui/table'
 import { useTranslation } from 'react-i18next'
-import { exampleTableColumns } from '../const/exampleTableColumns'
+import { getExampleTableColumns } from '../const/exampleTableColumns.const'
 
 export const ExampleTableContainer = () => {
-  const { t } = useTranslation(['common'])
-  const { changeLimit, setPage } = usePaginate()
+  const { t } = useTranslation('example')
+  const columns = getExampleTableColumns(t)
+
+  const { data, isLoading } = useExampleQuery()
+
+  const records = data?.data?.content ?? []
+  const totalElements = data?.data?.totalElements ?? 0
+
   return (
-    <BasicTable
-      columns={exampleTableColumns}
-      data={[]}
-      pagination
-      t={t}
-      pages={1}
-      currentPage={1}
-      itemsPerPage={10}
-      onItemsPerPageChange={changeLimit}
+    <DataTable
+      records={records}
+      columns={columns}
+      totalRecords={totalElements}
+      page={page}
       onPageChange={setPage}
+      recordsPerPage={limit}
+      onRecordsPerPageChange={setLimit}
+      fetching={isLoading}
     />
   )
 }
@@ -357,22 +362,93 @@ export const ExampleTableContainer = () => {
 
 ## Table config example
 
-```ts
-import type { TableColumns } from '@/libs/ui/table'
+Column definitions must be a **function that receives `t`** so titles are internationalized. All columns must have explicit `width` (px). The wrapper uses `table-layout: fixed` — fixed pixel widths prevent column compression and enable horizontal scroll on overflow.
 
-export const EXAMPLE_TABLE_COLUMNS: TableColumns<ExampleEntity>[] = [
+```ts
+import type { TFunction } from 'i18next'
+import type { DataTableColumn } from '@/libs/ui/table'
+
+export const getExampleTableColumns = (
+  t: TFunction,
+): DataTableColumn<ExampleEntity>[] => [
   {
-    accessorKey: 'id',
-    header: 'table.headers.id',
+    accessor: 'id',
+    title: t('columns.id', 'ID'),
+    width: 80,
   },
   {
-    accessorKey: 'name',
-    header: 'table.headers.name',
+    accessor: 'name',
+    title: t('columns.name', 'Name'),
+    width: 300,
   },
   {
-    accessorKey: 'status',
-    header: 'table.headers.status',
-    meta: { cellWidth: 100 },
+    accessor: 'status',
+    title: t('columns.status', 'Status'),
+    width: 150,
+  },
+  {
+    accessor: 'createdAt',
+    title: t('columns.createdAt', 'Created'),
+    width: 180,
   },
 ]
 ```
+
+## DataTable wrapper defaults
+
+The wrapper at `./src/libs/ui/table/DataTable.tsx` applies project-wide defaults. Do **not** re-declare these at usage sites:
+
+| Prop | Default |
+|---|---|
+| `withTableBorder` | `false` |
+| `withColumnBorders` | `false` |
+| `borderRadius` | `"sm"` |
+| `rowBorderColor` | `"transparent"` |
+| `paginationSize` | `"md"` |
+| `getPaginationItemProps` | `{ radius: "sm" }` |
+| `rowStyle` | `{ minHeight: 45 }` |
+| `recordsPerPageOptions` | `[10, 15, 20]` |
+| `styles.header` | primary-9 bg, 60px height, white text |
+| `styles.table.tableLayout` | `"fixed"` (columns don't resize on data change) |
+| `styles.pagination.borderTop` | `"none"` (no divider) |
+| Filter button | `background: transparent`, icons 18px |
+| Sort icons | 18px |
+
+## Column filtering (client-side)
+
+Mantine DataTable supports per-column filter popovers via `filter` and `filtering`:
+
+- `filter` — React node rendered in a popover below the column header. Can be a function `({ close }) => ReactNode` to access the close action.
+- `filtering` — `boolean` that shows a visual indicator when the filter is active.
+
+The library does NOT filter records for you — you filter the `records` array in your component.
+
+```tsx
+import { TextInput } from '@mantine/core';
+import { useState } from 'react';
+
+const [query, setQuery] = useState('');
+
+const columns = [
+  {
+    accessor: 'name',
+    filter: (
+      <TextInput
+        placeholder="Search..."
+        value={query}
+        onChange={(e) => setQuery(e.currentTarget.value)}
+      />
+    ),
+    filtering: query !== '',
+  },
+];
+
+// Filter records before passing to DataTable
+const filtered = records.filter((r) =>
+  r.name.toLowerCase().includes(query.toLowerCase())
+);
+
+<DataTable records={filtered} columns={columns} />
+```
+
+> **Note:** For server-side filtering (our standard pattern), use a Zustand store with `getQueryParams()` and pass filters as API params. Column filters are for small, client-side datasets.

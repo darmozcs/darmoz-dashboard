@@ -65,7 +65,7 @@ export const DashboardLayout = ({ menuItems }: DashboardLayoutProps) => {
         </Flex>
       </AppShell.Navbar>
 
-      <AppShell.Main bg="gray.2">
+      <AppShell.Main bg="gray.2" style={{ overflow: "hidden" }}>
         <Outlet />
       </AppShell.Main>
     </AppShell>

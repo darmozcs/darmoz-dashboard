@@ -9,3 +9,7 @@ export const AUTH_LOGIN_PATH = AUTH_PATH + "/login";
 export const AUTH_REFRESH_PATH = AUTH_PATH + "/refresh";
 export const AUTH_LOGOUT_PATH = AUTH_PATH + "/logout";
 export const AUTH_VERIFY_PATH = AUTH_PATH + "/verify";
+
+export const USERS_PATH = BASE_PATH + "/users";
+export const USER_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${USERS_PATH}/${id}`;

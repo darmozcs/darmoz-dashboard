@@ -1,0 +1,13 @@
+{
+  "actions": {
+    "addUser": "Add User"
+  },
+  "master": {
+    "email": "Email",
+    "status": "Status",
+    "application": "Application",
+    "roles": "Roles",
+    "createdAt": "Created at",
+    "searchEmail": "Search by email..."
+  }
+}

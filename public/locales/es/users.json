@@ -1,0 +1,13 @@
+{
+  "actions": {
+    "addUser": "Agregar usuario"
+  },
+  "master": {
+    "email": "Correo electrónico",
+    "status": "Estado",
+    "application": "Aplicación",
+    "roles": "Roles",
+    "createdAt": "Fecha de creación",
+    "searchEmail": "Buscar por correo..."
+  }
+}

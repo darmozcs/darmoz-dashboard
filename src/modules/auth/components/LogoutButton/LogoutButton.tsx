@@ -13,7 +13,7 @@ export const LogoutButton = ({ onClick }: LogoutButtonProps) => {
     <Button
       color="red"
       fullWidth
-      leftSection={<IconLogout size={16} />}
+      leftSection={<IconLogout />}
       onClick={onClick}
     >
       {t("menu.logout")}

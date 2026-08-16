@@ -1,12 +1,16 @@
-import { Paper, Title } from "@mantine/core";
-import { useTranslation } from "react-i18next";
+import {
+  UserMasterHeaderContainer,
+  UsersMasterTableContainer,
+} from "@/modules/users/containers";
+import { Box, Stack } from "@mantine/core";
 
 export const User = () => {
-  const { t } = useTranslation("common");
-
   return (
-    <Paper p="md">
-      <Title order={2}>{t("menu.user", "Users")}</Title>
-    </Paper>
+    <Stack h="100%">
+      <UserMasterHeaderContainer />
+      <Box flex={1} mih={0}>
+        <UsersMasterTableContainer />
+      </Box>
+    </Stack>
   );
 };

@@ -1,9 +1,9 @@
-import { useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { verifyService } from "@/DAL/auth/services/auth.service";
 import { AUTH_SESSION } from "@/DAL/const";
 import { useUserStore } from "@/store";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 export const useAuthGuard = () => {
   const navigate = useNavigate();

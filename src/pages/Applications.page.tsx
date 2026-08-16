@@ -1,12 +1,8 @@
-import { Paper, Title } from "@mantine/core";
 import { useTranslation } from "react-i18next";
+import { PageHeader } from "@/modules/common/components";
 
 export const Applications = () => {
   const { t } = useTranslation("common");
 
-  return (
-    <Paper p="md">
-      <Title order={2}>{t("menu.applications", "Applications")}</Title>
-    </Paper>
-  );
+  return <PageHeader title={t("menu.applications", "Applications")} />;
 };

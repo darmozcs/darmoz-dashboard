@@ -2,3 +2,6 @@ export const EXAMPLE_LIST = "EXAMPLE_LIST";
 export const EXAMPLE_DETAIL = "EXAMPLE_DETAIL";
 
 export const AUTH_SESSION = "AUTH_SESSION";
+
+export const USER_LIST = "USER_LIST";
+export const USER_DETAIL = "USER_DETAIL";

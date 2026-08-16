@@ -1,16 +1,18 @@
-import { Button, Menu } from "@mantine/core";
+import { Button, Menu, Text } from "@mantine/core";
 import { IconLanguage } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 
 interface LanguageMenuProps {
   data: { value: string; label: string }[];
   currentLanguageLabel: string;
+  currentLanguageCode: string;
   onChange: (value: string) => void;
 }
 
 export const LanguageMenu = ({
   data,
   currentLanguageLabel,
+  currentLanguageCode,
   onChange,
 }: LanguageMenuProps) => {
   const { t } = useTranslation(["common"]);
@@ -22,9 +24,11 @@ export const LanguageMenu = ({
           variant="transparent"
           c={{ base: "white", md: "primary" }}
           aria-label={t("common:languages.select")}
-          leftSection={<IconLanguage size={18} />}
+          leftSection={<IconLanguage />}
+          pr={0}
         >
-          <span className="hidden sm:inline">{currentLanguageLabel}</span>
+          <Text visibleFrom="sm">{currentLanguageLabel}</Text>
+          <Text hiddenFrom="sm">{currentLanguageCode}</Text>
         </Button>
       </Menu.Target>
       <Menu.Dropdown>

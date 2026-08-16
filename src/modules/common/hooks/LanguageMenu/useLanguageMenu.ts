@@ -6,6 +6,7 @@ export const useLanguageMenu = () => {
   const { i18n, t } = useTranslation(["common"]);
 
   const currentLanguageLabel = t(`common:languages.${i18n.language}`);
+  const currentLanguageCode = i18n.language.toUpperCase();
 
   const data = useMemo(() => {
     const languages: { value: string; label: string }[] = [];
@@ -34,6 +35,7 @@ export const useLanguageMenu = () => {
   return {
     data,
     currentLanguageLabel,
+    currentLanguageCode,
     handleChange,
   };
 };
