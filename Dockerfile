@@ -1,9 +1,17 @@
 FROM node:22-alpine AS build
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci
+RUN corepack enable && corepack prepare pnpm@9 --activate
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
-RUN npm run build
+
+ARG VITE_API_BASE_URL=""
+ARG VITE_ENABLE_MOCKS=false
+ARG VITE_TOKEN_REFRESH_INTERVAL_MS=300000
+ENV VITE_API_BASE_URL=${VITE_API_BASE_URL} \
+    VITE_ENABLE_MOCKS=${VITE_ENABLE_MOCKS} \
+    VITE_TOKEN_REFRESH_INTERVAL_MS=${VITE_TOKEN_REFRESH_INTERVAL_MS}
+RUN pnpm run build
 
 FROM nginx:1.27-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
