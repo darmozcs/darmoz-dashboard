@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useRolesFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateRoleModal } from "../components/CreateRoleModal/CreateRoleModal";
 
 export const RolesMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useRolesFiltersStore();
 
   return (
     <>

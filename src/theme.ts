@@ -75,6 +75,7 @@ export const theme = createTheme({
     Select: {
       defaultProps: {
         size: "md",
+        radius: "sm",
       },
     },
     MultiSelect: {
@@ -102,6 +103,18 @@ export const theme = createTheme({
       },
     },
     Radio: {
+      defaultProps: {
+        size: "md",
+        radius: "sm",
+      },
+    },
+    DatePickerInput: {
+      defaultProps: {
+        size: "md",
+        radius: "sm",
+      },
+    },
+    DateTimePicker: {
       defaultProps: {
         size: "md",
         radius: "sm",

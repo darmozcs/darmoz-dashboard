@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useUsersMasterFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateUserModal } from "../components/CreateUserModal/CreateUserModal";
 
 export const UserMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useUsersMasterFiltersStore();
 
   return (
     <>

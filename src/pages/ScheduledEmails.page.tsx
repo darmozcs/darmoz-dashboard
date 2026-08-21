@@ -8,7 +8,7 @@ export const ScheduledEmails = () => {
   return (
     <Stack h="100%">
       <ScheduledEmailsMasterHeaderContainer />
-      <Box flex={1} mih={0}>
+      <Box flex={1}>
         <ScheduledEmailsMasterTableContainer />
       </Box>
     </Stack>

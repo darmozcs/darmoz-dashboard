@@ -1,10 +1,18 @@
 import type { DataTableColumn } from "@/libs/ui/table";
-import type { AuditLog } from "@/models";
+import type { AuditAction, AuditLog } from "@/models";
 import { Badge } from "@mantine/core";
 import type { TFunction } from "i18next";
+import { ActionFilterContainer, AuditApplicationFilterContainer, AuditEmailFilterContainer } from "../containers";
+
+interface AuditTableFilters {
+  action: AuditAction | null;
+  applicationId: string | null;
+  email: string;
+}
 
 export const getAuditTableColumns = (
   t: TFunction,
+  filters: AuditTableFilters,
 ): DataTableColumn<AuditLog>[] =>
   [
     {
@@ -16,6 +24,8 @@ export const getAuditTableColumns = (
       accessor: "action",
       title: t("master.action", "Action"),
       width: 160,
+      filter: <ActionFilterContainer />,
+      filtering: filters.action !== null,
     },
     {
       accessor: "result",
@@ -32,11 +42,15 @@ export const getAuditTableColumns = (
       accessor: "applicationName",
       title: t("master.application", "Application"),
       width: 160,
+      filter: <AuditApplicationFilterContainer />,
+      filtering: filters.applicationId !== null,
     },
     {
       accessor: "userEmail",
       title: t("master.email", "Email"),
       width: 220,
+      filter: <AuditEmailFilterContainer />,
+      filtering: filters.email !== "",
     },
     {
       accessor: "origin",

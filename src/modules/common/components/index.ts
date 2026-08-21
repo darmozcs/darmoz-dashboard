@@ -1,4 +1,6 @@
 export * from "./ApplicationSelect/ApplicationSelect";
+export * from "./DateRangeFilter/DateRangeFilter";
+export * from "./DateTimeRangeFilter/DateTimeRangeFilter";
 export * from "./EmailFilter/EmailFilter";
 export * from "./LanguageMenu/LanguageMenu";
 export * from "./MailClientApplicationSelect/MailClientApplicationSelect";

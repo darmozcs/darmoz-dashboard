@@ -1,9 +1,9 @@
-import { PageHeader } from "@/modules/common/components";
 import {
   AuditFiltersContainer,
   AuditMasterTableContainer,
 } from "@/modules/audit/containers";
-import { Box, Stack } from "@mantine/core";
+import { PageHeader } from "@/modules/common/components";
+import { Box, Flex, Stack } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 
 export const Audit = () => {
@@ -12,7 +12,9 @@ export const Audit = () => {
   return (
     <Stack h="100%">
       <PageHeader title={t("menu.audit", "Audit")} />
-      <AuditFiltersContainer />
+      <Flex justify="flex-end">
+        <AuditFiltersContainer />
+      </Flex>
       <Box flex={1} mih={0}>
         <AuditMasterTableContainer />
       </Box>

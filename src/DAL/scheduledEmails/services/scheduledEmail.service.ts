@@ -7,7 +7,7 @@ import type { ScheduledEmail, ScheduledEmailStatus } from "@/models";
 import type { AxiosResponse } from "axios";
 
 export interface ScheduledEmailFilters {
-  status?: ScheduledEmailStatus;
+  status?: ScheduledEmailStatus | null;
 }
 
 export interface ScheduledEmailPayload {

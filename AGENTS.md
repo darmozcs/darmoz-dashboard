@@ -414,41 +414,75 @@ The wrapper at `./src/libs/ui/table/DataTable.tsx` applies project-wide defaults
 | Filter button | `background: transparent`, icons 18px |
 | Sort icons | 18px |
 
-## Column filtering (client-side)
+## Column filtering (server-side — standard pattern)
 
-Mantine DataTable supports per-column filter popovers via `filter` and `filtering`:
+**All filtering must be server-side.** Never use `useState` + `useMemo` + `.filter()` for table data.
 
-- `filter` — React node rendered in a popover below the column header. Can be a function `({ close }) => ReactNode` to access the close action.
-- `filtering` — `boolean` that shows a visual indicator when the filter is active.
+### Architecture
 
-The library does NOT filter records for you — you filter the `records` array in your component.
+1. **Zustand store** (`src/store/use[Module]FiltersStore.ts`) — holds filter state
+2. **Filter containers** (`src/modules/[domain]/containers/[Name]FilterContainer/`) — reads from store, renders Mantine components
+3. **Column definitions** (`src/modules/[domain]/const/[table]Columns.const.tsx`) — receives `filters` param, adds `filter`/`filtering` to columns
+4. **Table container** (`src/modules/[domain]/containers/[Table]/`) — reads store, passes filters to query and columns
+
+### Rules
+
+- If a filter **corresponds to a rendered table column**, it MUST be a column filter (`filter`/`filtering` props).
+- If a filter **does NOT correspond to a column** (e.g., date range), it goes in a dedicated `FiltersContainer` above the table.
+- Never use `useState` for filter state — always use a Zustand store.
+- Never use `useMemo` + `.filter()` for table data — the API returns pre-filtered results.
+- Filter values are passed as query params to the DAL service.
+
+### Example: Column filter
 
 ```tsx
-import { TextInput } from '@mantine/core';
-import { useState } from 'react';
+// Store
+interface FiltersState {
+  search: string;
+  setPage: (page: number) => void;
+}
 
-const [query, setQuery] = useState('');
+// Filter container
+export const SearchFilterContainer = () => {
+  const { search, setSearch } = useFiltersStore();
+  const debouncedSetSearch = useDebouncedCallback(setSearch, 300);
+  return <TextInput value={search} onChange={...} />;
+};
 
-const columns = [
-  {
-    accessor: 'name',
-    filter: (
-      <TextInput
-        placeholder="Search..."
-        value={query}
-        onChange={(e) => setQuery(e.currentTarget.value)}
-      />
-    ),
-    filtering: query !== '',
-  },
-];
+// Column definition
+{
+  accessor: 'name',
+  filter: <SearchFilterContainer />,
+  filtering: filters.search !== '',
+}
 
-// Filter records before passing to DataTable
-const filtered = records.filter((r) =>
-  r.name.toLowerCase().includes(query.toLowerCase())
-);
-
-<DataTable records={filtered} columns={columns} />
+// Table container
+const { search } = useFiltersStore();
+const { data } = useQuery({ search });
+const columns = getColumns(t, { search });
 ```
 
-> **Note:** For server-side filtering (our standard pattern), use a Zustand store with `getQueryParams()` and pass filters as API params. Column filters are for small, client-side datasets.
+### Example: Filter outside column (date range)
+
+```tsx
+// In FiltersContainer above the table
+<DateRangeFilter
+  from={from}
+  to={to}
+  onFromChange={setFrom}
+  onToChange={setTo}
+/>
+```
+
+### Anti-patterns (DO NOT)
+
+```tsx
+// ❌ useState for filter state
+const [search, setSearch] = useState('');
+
+// ❌ useMemo + .filter() for table data
+const filtered = useMemo(() => data.filter(...), [data, search]);
+
+// ❌ Inline filter UI in table container
+<Select value={status} onChange={setStatus} />
+```

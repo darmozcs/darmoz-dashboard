@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useScheduledEmailsFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateScheduledEmailModal } from "../components/CreateScheduledEmailModal/CreateScheduledEmailModal";
 
 export const ScheduledEmailsMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useScheduledEmailsFiltersStore();
 
   return (
     <>

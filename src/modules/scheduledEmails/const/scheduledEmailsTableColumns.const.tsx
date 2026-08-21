@@ -4,6 +4,7 @@ import type { ScheduledEmail, ScheduledEmailStatus } from "@/models";
 import { ActionIcon, Badge, Group } from "@mantine/core";
 import { IconPencil, IconX } from "@tabler/icons-react";
 import type { TFunction } from "i18next";
+import { StatusFilterContainer } from "../containers";
 
 const STATUS_COLORS: Record<ScheduledEmailStatus, string> = {
   PENDING: "yellow",
@@ -18,8 +19,13 @@ interface ScheduledEmailsTableActions {
   onCancel: (scheduledEmail: ScheduledEmail) => void;
 }
 
+interface ScheduledEmailsTableFilters {
+  status: ScheduledEmailStatus | null;
+}
+
 export const getScheduledEmailsTableColumns = (
   t: TFunction,
+  filters: ScheduledEmailsTableFilters,
   actions: ScheduledEmailsTableActions,
 ): DataTableColumn<ScheduledEmail>[] =>
   [
@@ -46,6 +52,8 @@ export const getScheduledEmailsTableColumns = (
           {scheduledEmail.status}
         </Badge>
       ),
+      filter: <StatusFilterContainer />,
+      filtering: filters.status !== null,
     },
     {
       accessor: "attempts",

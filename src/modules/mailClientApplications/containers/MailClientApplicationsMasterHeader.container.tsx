@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useMailClientApplicationsFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateMailClientApplicationModal } from "../components/CreateMailClientApplicationModal/CreateMailClientApplicationModal";
 
 export const MailClientApplicationsMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useMailClientApplicationsFiltersStore();
 
   return (
     <>

@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useRolePermissionsFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateRolePermissionModal } from "../components/CreateRolePermissionModal/CreateRolePermissionModal";
 
 export const RolePermissionsMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useRolePermissionsFiltersStore();
 
   return (
     <>

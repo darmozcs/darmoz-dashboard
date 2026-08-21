@@ -24,7 +24,7 @@ export const AuditMasterTableContainer = () => {
   const logs = data?.data?.content ?? [];
   const totalElements = data?.data?.totalElements ?? 0;
 
-  const columns = getAuditTableColumns(t);
+  const columns = getAuditTableColumns(t, { action, applicationId, email });
 
   return (
     <DataTable

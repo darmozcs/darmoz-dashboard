@@ -1,11 +1,11 @@
 import { PageHeader, PlusButton } from "@/modules/common/components";
-import { useState } from "react";
+import { useEmailTemplatesFiltersStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { CreateEmailTemplateModal } from "../components/CreateEmailTemplateModal/CreateEmailTemplateModal";
 
 export const EmailTemplatesMasterHeaderContainer = () => {
   const { t } = useTranslation();
-  const [createOpen, setCreateOpen] = useState(false);
+  const { createOpen, setCreateOpen } = useEmailTemplatesFiltersStore();
 
   return (
     <>

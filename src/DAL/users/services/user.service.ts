@@ -4,8 +4,15 @@ import {
   ADMIN_USER_ROLES_PATH,
 } from "@/DAL/const";
 import { httpClient } from "@/libs";
-import type { User } from "@/models";
+import type { PageResponse, User } from "@/models";
 import type { AxiosResponse } from "axios";
+
+export interface UserFilters {
+  search?: string;
+  applicationId?: string | null;
+  page?: number;
+  size?: number;
+}
 
 export interface CreateUserPayload {
   email: string;
@@ -19,8 +26,12 @@ export interface UpdateUserPayload {
   password?: string;
 }
 
-export const getUsersService = async (): Promise<AxiosResponse<User[]>> =>
-  await httpClient.get<User[]>(ADMIN_USERS_PATH);
+export const getUsersService = async (
+  filters: UserFilters = {},
+): Promise<AxiosResponse<PageResponse<User>>> =>
+  await httpClient.get<PageResponse<User>>(ADMIN_USERS_PATH, {
+    params: filters,
+  });
 
 export const createUserService = async (
   payload: CreateUserPayload,
