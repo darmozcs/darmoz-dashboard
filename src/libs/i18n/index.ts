@@ -14,7 +14,7 @@ void i18n
     fallbackLng: "es",
     supportedLngs: SUPPORTED_LANGUAGES,
     defaultNS: DEFAULT_NAMESPACE,
-    ns: [DEFAULT_NAMESPACE, "users"],
+    ns: [DEFAULT_NAMESPACE, "users", "applications"],
     backend: {
       loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
     },

@@ -3,5 +3,6 @@ export interface Aplication {
   serviceName: string;
   name: string;
   description: string;
+  unverifiedLoginLimit: number;
   createdAt: string;
 }

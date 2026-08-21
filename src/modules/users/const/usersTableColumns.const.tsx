@@ -21,6 +21,11 @@ export const getUsersTableColumns = (
       width: 100,
     },
     {
+      accessor: "emailVerified",
+      title: t("master.emailVerified", "Email verified"),
+      width: 140,
+    },
+    {
       accessor: "applicationName",
       title: t("master.application", "Application"),
       width: 200,

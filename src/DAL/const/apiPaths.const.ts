@@ -13,3 +13,7 @@ export const AUTH_VERIFY_PATH = AUTH_PATH + "/verify";
 export const USERS_PATH = BASE_PATH + "/users";
 export const USER_DETAIL_PATH = ({ id }: { id: string }) =>
   `${USERS_PATH}/${id}`;
+
+export const ADMIN_APPLICATIONS_PATH = "/admin/api/applications";
+export const ADMIN_APPLICATION_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${ADMIN_APPLICATIONS_PATH}/${id}`;

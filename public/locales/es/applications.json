@@ -1,0 +1,9 @@
+{
+  "master": {
+    "name": "Nombre",
+    "description": "Descripción",
+    "unverifiedLoginLimit": "Límite de logins sin verificar"
+  },
+  "editLimitTitle": "Editar límite de logins sin verificar",
+  "editLimitSave": "Guardar"
+}

@@ -5,6 +5,7 @@
   "master": {
     "email": "Correo electrónico",
     "status": "Estado",
+    "emailVerified": "Email verificado",
     "application": "Aplicación",
     "roles": "Roles",
     "createdAt": "Fecha de creación",

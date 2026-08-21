@@ -1,0 +1,9 @@
+{
+  "master": {
+    "name": "Name",
+    "description": "Description",
+    "unverifiedLoginLimit": "Unverified login limit"
+  },
+  "editLimitTitle": "Edit unverified login limit",
+  "editLimitSave": "Save"
+}

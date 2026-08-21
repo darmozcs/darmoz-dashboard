@@ -5,3 +5,5 @@ export const AUTH_SESSION = "AUTH_SESSION";
 
 export const USER_LIST = "USER_LIST";
 export const USER_DETAIL = "USER_DETAIL";
+
+export const APPLICATION_LIST = "APPLICATION_LIST";
