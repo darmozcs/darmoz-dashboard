@@ -21,6 +21,10 @@ void i18n
       "roles",
       "permissions",
       "audit",
+      "mailAudit",
+      "scheduledEmails",
+      "emailTemplates",
+      "mailApplications",
     ],
     backend: {
       loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,

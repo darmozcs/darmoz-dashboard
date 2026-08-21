@@ -9,12 +9,17 @@
     "description": "Plataforma de marketplace"
   },
   "menu": {
-    "dashboard": "Panel",
+    "auth": "Autenticación",
+    "mail": "Mail",
     "user": "Usuarios",
     "roles": "Roles",
     "permissions": "Permisos",
     "applications": "Aplicaciones",
     "audit": "Auditoría",
+    "mailAudit": "Auditoría",
+    "scheduledEmails": "Correos programados",
+    "templates": "Templates",
+    "mailApplications": "Aplicaciones",
     "logout": "Cerrar sesión"
   },
   "login": {
@@ -43,5 +48,7 @@
       "title": "Error al cargar los datos",
       "description": "No se pudieron cargar los datos. Inténtalo de nuevo."
     }
-  }
+  },
+  "yes": "Sí",
+  "no": "No"
 }

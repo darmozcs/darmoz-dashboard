@@ -1,0 +1,27 @@
+{
+  "actions": {
+    "addScheduledEmail": "Schedule email"
+  },
+  "master": {
+    "recipient": "Recipient",
+    "application": "Application",
+    "subject": "Subject",
+    "templateCode": "Template",
+    "bodyOverride": "Body override",
+    "scheduledAt": "Scheduled for",
+    "status": "Status",
+    "attempts": "Attempts",
+    "variables": "Variables"
+  },
+  "filterStatus": "Filter by status",
+  "templateOrBodyHint": "Choose a template or write a body override below",
+  "variableName": "Name",
+  "variableValue": "Value",
+  "createTitle": "Schedule email",
+  "createSave": "Schedule",
+  "editTitle": "Edit scheduled email",
+  "editSave": "Save",
+  "cancelTitle": "Cancel scheduled email",
+  "cancelMessage": "Are you sure you want to cancel the email to \"{{recipient}}\"?",
+  "cancelSuccess": "Scheduled email cancelled"
+}

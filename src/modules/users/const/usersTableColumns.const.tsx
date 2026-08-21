@@ -1,10 +1,10 @@
 import { confirmDelete } from "@/libs/ui/confirm/confirmDelete";
 import type { DataTableColumn } from "@/libs/ui/table";
 import type { User } from "@/models";
-import { ActionIcon, Group, Switch } from "@mantine/core";
+import { ActionIcon, Badge, Group, Switch } from "@mantine/core";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import type { TFunction } from "i18next";
-import { EmailFilterContainer } from "../containers";
+import { ApplicationFilterContainer, EmailFilterContainer } from "../containers";
 
 interface UsersTableActions {
   onToggleEnabled: (user: User) => void;
@@ -12,9 +12,14 @@ interface UsersTableActions {
   onDelete: (user: User) => void;
 }
 
+interface UsersTableFilters {
+  search: string;
+  applicationId: string | null;
+}
+
 export const getUsersTableColumns = (
   t: TFunction,
-  search: string,
+  filters: UsersTableFilters,
   actions: UsersTableActions,
 ): DataTableColumn<User>[] =>
   [
@@ -23,7 +28,7 @@ export const getUsersTableColumns = (
       title: t("master.email", "Email"),
       width: 260,
       filter: <EmailFilterContainer />,
-      filtering: search !== "",
+      filtering: filters.search !== "",
     },
     {
       accessor: "enabled",
@@ -40,6 +45,11 @@ export const getUsersTableColumns = (
       accessor: "emailVerified",
       title: t("master.emailVerified", "Email verified"),
       width: 140,
+      render: (user) => (
+        <Badge color={user.emailVerified ? "green" : "gray"} variant="light">
+          {user.emailVerified ? t("common:yes", "Yes") : t("common:no", "No")}
+        </Badge>
+      ),
     },
     {
       accessor: "unverifiedLoginCount",
@@ -50,6 +60,8 @@ export const getUsersTableColumns = (
       accessor: "applicationName",
       title: t("master.application", "Application"),
       width: 180,
+      filter: <ApplicationFilterContainer />,
+      filtering: filters.applicationId !== null,
     },
     {
       accessor: "roles",

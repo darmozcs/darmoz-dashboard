@@ -1,0 +1,27 @@
+{
+  "actions": {
+    "addScheduledEmail": "Programar correo"
+  },
+  "master": {
+    "recipient": "Destinatario",
+    "application": "Aplicación",
+    "subject": "Asunto",
+    "templateCode": "Template",
+    "bodyOverride": "Cuerpo (override)",
+    "scheduledAt": "Programado para",
+    "status": "Estado",
+    "attempts": "Intentos",
+    "variables": "Variables"
+  },
+  "filterStatus": "Filtrar por estado",
+  "templateOrBodyHint": "Elegí un template o escribí un cuerpo alternativo abajo",
+  "variableName": "Nombre",
+  "variableValue": "Valor",
+  "createTitle": "Programar correo",
+  "createSave": "Programar",
+  "editTitle": "Editar correo programado",
+  "editSave": "Guardar",
+  "cancelTitle": "Cancelar correo programado",
+  "cancelMessage": "¿Seguro que querés cancelar el correo a \"{{recipient}}\"?",
+  "cancelSuccess": "Correo programado cancelado"
+}

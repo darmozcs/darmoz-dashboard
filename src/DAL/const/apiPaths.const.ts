@@ -27,3 +27,25 @@ export const ADMIN_ROLE_PERMISSION_DETAIL_PATH = ({ id }: { id: string }) =>
   `${ADMIN_ROLE_PERMISSIONS_PATH}/${id}`;
 
 export const ADMIN_AUDIT_LOG_PATH = ADMIN_BASE_PATH + "/audit-log";
+
+// darmoz-mail: separate service, own context-path (no /auth, no /admin/api
+// nesting — its context-path IS "/darmoz-mail", confirmed from its
+// application.yml + its own legacy panel's runtime API-base computation).
+export const MAIL_BASE_PATH = "/darmoz-mail";
+
+export const MAIL_AUDIT_LOGS_PATH = MAIL_BASE_PATH + "/audit-logs";
+export const MAIL_AUDIT_LOG_RESEND_PATH = ({ id }: { id: number }) =>
+  `${MAIL_AUDIT_LOGS_PATH}/${id}/resend`;
+
+export const MAIL_SCHEDULED_EMAILS_PATH = MAIL_BASE_PATH + "/scheduled-emails";
+export const MAIL_SCHEDULED_EMAIL_DETAIL_PATH = ({ id }: { id: number }) =>
+  `${MAIL_SCHEDULED_EMAILS_PATH}/${id}`;
+
+export const MAIL_TEMPLATES_PATH = MAIL_BASE_PATH + "/templates";
+export const MAIL_TEMPLATE_DETAIL_PATH = ({ id }: { id: number }) =>
+  `${MAIL_TEMPLATES_PATH}/${id}`;
+
+export const MAIL_CLIENT_APPLICATIONS_PATH =
+  MAIL_BASE_PATH + "/client-applications";
+export const MAIL_CLIENT_APPLICATION_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${MAIL_CLIENT_APPLICATIONS_PATH}/${id}`;

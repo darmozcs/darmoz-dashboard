@@ -24,7 +24,7 @@ export const useLoginForm = () => {
       {
         onSuccess: (response) => {
           if (applySuperGatedSession(response.data)) {
-            navigate({ to: "/dashboard" });
+            navigate({ to: "/user" });
           }
         },
         onError: (error: unknown) => {

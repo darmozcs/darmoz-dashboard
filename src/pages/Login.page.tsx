@@ -7,11 +7,11 @@ export const Login = () => {
 
   useEffect(() => {
     if (accessToken) {
-      window.history.replaceState(null, "", "/dashboard");
+      window.history.replaceState(null, "", "/user");
     }
   }, [accessToken]);
 
-  if (accessToken) return <Navigate to="/dashboard" replace />;
+  if (accessToken) return <Navigate to="/user" replace />;
 
   return <LoginFormContainer />;
 };
