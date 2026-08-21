@@ -5,7 +5,7 @@ export const AUTH_REFRESH_PATH = AUTH_PATH + "/refresh";
 export const AUTH_LOGOUT_PATH = AUTH_PATH + "/logout";
 export const AUTH_VERIFY_PATH = AUTH_PATH + "/verify";
 
-export const ADMIN_BASE_PATH = "/admin/api";
+export const ADMIN_BASE_PATH = AUTH_PATH + "/admin/api";
 
 export const ADMIN_USERS_PATH = ADMIN_BASE_PATH + "/users";
 export const ADMIN_USER_DETAIL_PATH = ({ id }: { id: string }) =>
