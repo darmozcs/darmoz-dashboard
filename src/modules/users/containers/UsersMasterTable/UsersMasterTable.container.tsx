@@ -1,31 +1,93 @@
-import { useUsersQuery } from "@/DAL";
+import { useDeleteUserMutation, useUpdateUserMutation, useUsersQuery } from "@/DAL";
 import { DataTable } from "@/libs/ui/table";
+import type { User } from "@/models";
 import { useUsersMasterFiltersStore } from "@/store";
+import { notifications } from "@mantine/notifications";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { EditUserRolesModal } from "../../components/EditUserRolesModal/EditUserRolesModal";
 import { getUsersTableColumns } from "../../const/usersTableColumns.const";
 
 export const UsersMasterTableContainer = () => {
   const { t } = useTranslation("users");
-  const { search, page, limit, setPage, setLimit, getQueryParams } =
+  const { search, page, limit, setPage, setLimit } =
     useUsersMasterFiltersStore();
+  const [selectedUserForRoles, setSelectedUserForRoles] =
+    useState<User | null>(null);
 
-  const columns = getUsersTableColumns(t, search);
+  const { data, isLoading } = useUsersQuery();
+  const updateUserMutation = useUpdateUserMutation();
+  const deleteUserMutation = useDeleteUserMutation();
 
-  const { data, isLoading } = useUsersQuery(getQueryParams());
+  const allUsers = data?.data ?? [];
 
-  const users = data?.data?.content ?? [];
-  const totalElements = data?.data?.totalElements ?? 0;
+  const filteredUsers = useMemo(() => {
+    const normalizedSearch = search.trim().toLowerCase();
+    if (!normalizedSearch) return allUsers;
+    return allUsers.filter((user) =>
+      user.email.toLowerCase().includes(normalizedSearch),
+    );
+  }, [allUsers, search]);
+
+  const pagedUsers = useMemo(() => {
+    const start = (page - 1) * limit;
+    return filteredUsers.slice(start, start + limit);
+  }, [filteredUsers, page, limit]);
+
+  const handleToggleEnabled = (user: User) => {
+    updateUserMutation.mutate(
+      { id: user.id, payload: { enabled: !user.enabled } },
+      {
+        onError: (error: unknown) => {
+          const message =
+            (error as { response?: { data?: { message?: string } } })
+              ?.response?.data?.message || "Update failed";
+          notifications.show({ color: "red", title: "Error", message });
+        },
+      },
+    );
+  };
+
+  const handleDelete = (user: User) => {
+    deleteUserMutation.mutate(user.id, {
+      onSuccess: () => {
+        notifications.show({
+          color: "green",
+          title: "Success",
+          message: t("deleteSuccess", "User deleted"),
+        });
+      },
+      onError: (error: unknown) => {
+        const message =
+          (error as { response?: { data?: { message?: string } } })?.response
+            ?.data?.message || "Delete failed";
+        notifications.show({ color: "red", title: "Error", message });
+      },
+    });
+  };
+
+  const columns = getUsersTableColumns(t, search, {
+    onToggleEnabled: handleToggleEnabled,
+    onEditRoles: setSelectedUserForRoles,
+    onDelete: handleDelete,
+  });
 
   return (
-    <DataTable
-      records={users}
-      columns={columns}
-      totalRecords={totalElements}
-      page={page}
-      onPageChange={setPage}
-      recordsPerPage={limit}
-      onRecordsPerPageChange={setLimit}
-      fetching={isLoading}
-    />
+    <>
+      <DataTable
+        records={pagedUsers}
+        columns={columns}
+        totalRecords={filteredUsers.length}
+        page={page}
+        onPageChange={setPage}
+        recordsPerPage={limit}
+        onRecordsPerPageChange={setLimit}
+        fetching={isLoading}
+      />
+      <EditUserRolesModal
+        user={selectedUserForRoles}
+        onClose={() => setSelectedUserForRoles(null)}
+      />
+    </>
   );
 };

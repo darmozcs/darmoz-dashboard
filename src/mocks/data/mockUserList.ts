@@ -46,6 +46,7 @@ const generateMockUsers = (): User[] => {
       email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}${i}@${pick(DOMAINS)}`,
       enabled: i % 7 !== 0,
       emailVerified: i % 3 !== 0,
+      unverifiedLoginCount: i % 3 === 0 ? 0 : i % 4,
       applicationId: app.id,
       applicationName: app.name,
       roles: i % 5 === 0 ? ["USER", "ADMIN"] : ["USER"],

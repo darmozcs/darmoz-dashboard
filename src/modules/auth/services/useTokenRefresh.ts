@@ -1,60 +1,43 @@
 import { useEffect, useRef } from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { config } from "@/config";
 import { logoutService, refreshService } from "@/DAL/auth";
-import { useUserStore } from "@/store";
+import { applySuperGatedSession, forceLogout, tokenStorage } from "@/libs";
 
 export const useTokenRefresh = (isAuthenticated: boolean) => {
-  const navigate = useNavigate();
-  const setUser = useUserStore((s) => s.setUser);
-  const clearUser = useUserStore((s) => s.clearUser);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    const refreshToken = localStorage.getItem("refreshToken");
-    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = tokenStorage.getRefresh();
+    const accessToken = tokenStorage.getAccess();
 
     if (!refreshToken || !accessToken) {
-      clearUser();
-      navigate({ to: "/" });
+      forceLogout();
       return;
     }
 
     const refresh = async () => {
-      const currentRefresh = localStorage.getItem("refreshToken");
-      const currentAccess = localStorage.getItem("accessToken");
+      const currentRefresh = tokenStorage.getRefresh();
+      const currentAccess = tokenStorage.getAccess();
 
       if (!currentRefresh || !currentAccess) {
-        clearUser();
-        navigate({ to: "/" });
+        forceLogout();
         return;
       }
 
       try {
         const response = await refreshService({ refreshToken: currentRefresh });
-        const {
-          accessToken: newAccess,
-          refreshToken: newRefresh,
-          userId,
-          email,
-          roles,
-          permissions,
-        } = response.data;
-        localStorage.setItem("accessToken", newAccess);
-        localStorage.setItem("refreshToken", newRefresh);
-        setUser({ userId, email, roles, permissions });
+        if (!applySuperGatedSession(response.data)) {
+          forceLogout();
+        }
       } catch {
         try {
           await logoutService({ refreshToken: currentRefresh });
         } catch {
           // Ignore logout errors
         }
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        clearUser();
-        navigate({ to: "/" });
+        forceLogout();
       }
     };
 
@@ -68,5 +51,5 @@ export const useTokenRefresh = (isAuthenticated: boolean) => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isAuthenticated, navigate, setUser, clearUser]);
+  }, [isAuthenticated]);
 };

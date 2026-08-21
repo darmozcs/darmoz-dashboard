@@ -25,7 +25,8 @@
     "submit": "Iniciar sesión"
   },
   "auth": {
-    "verifying": "Verificando sesión..."
+    "verifying": "Verificando sesión...",
+    "notAuthorized": "Tu cuenta no tiene permisos de administrador"
   },
   "modals": {
     "labels": {

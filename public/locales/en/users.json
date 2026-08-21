@@ -6,9 +6,18 @@
     "email": "Email",
     "status": "Status",
     "emailVerified": "Email verified",
+    "unverifiedLoginCount": "Unverified logins",
     "application": "Application",
     "roles": "Roles",
     "createdAt": "Created at",
     "searchEmail": "Search by email..."
-  }
+  },
+  "createTitle": "Create user",
+  "createPassword": "Password",
+  "createSave": "Create",
+  "editRolesTitle": "Edit roles",
+  "editRolesSave": "Save",
+  "deleteTitle": "Delete user",
+  "deleteMessage": "Are you sure you want to delete \"{{email}}\"?",
+  "deleteSuccess": "User deleted"
 }

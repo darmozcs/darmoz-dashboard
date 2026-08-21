@@ -3,6 +3,7 @@ export interface User {
   email: string;
   enabled: boolean;
   emailVerified: boolean;
+  unverifiedLoginCount: number;
   applicationId: string;
   applicationName: string;
   roles: string[];

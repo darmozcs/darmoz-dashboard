@@ -1,8 +1,16 @@
-import { useTranslation } from "react-i18next";
-import { PageHeader } from "@/modules/common/components";
+import {
+  RolePermissionsMasterHeaderContainer,
+  RolePermissionsMasterTableContainer,
+} from "@/modules/rolePermissions/containers";
+import { Box, Stack } from "@mantine/core";
 
 export const Permissions = () => {
-  const { t } = useTranslation("common");
-
-  return <PageHeader title={t("menu.permissions", "Permissions")} />;
+  return (
+    <Stack h="100%">
+      <RolePermissionsMasterHeaderContainer />
+      <Box flex={1} mih={0}>
+        <RolePermissionsMasterTableContainer />
+      </Box>
+    </Stack>
+  );
 };

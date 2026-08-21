@@ -1,9 +1,19 @@
 {
+  "actions": {
+    "addApplication": "Agregar aplicación"
+  },
   "master": {
+    "serviceName": "Nombre de servicio",
     "name": "Nombre",
     "description": "Descripción",
     "unverifiedLoginLimit": "Límite de logins sin verificar"
   },
-  "editLimitTitle": "Editar límite de logins sin verificar",
-  "editLimitSave": "Guardar"
+  "editTitle": "Editar aplicación",
+  "editSave": "Guardar",
+  "createTitle": "Crear aplicación",
+  "createSave": "Crear",
+  "createAutoRoleNote": "Se va a crear automáticamente un rol base USER para esta aplicación.",
+  "deleteTitle": "Eliminar aplicación",
+  "deleteMessage": "¿Seguro que querés eliminar \"{{name}}\"?",
+  "deleteSuccess": "Aplicación eliminada"
 }

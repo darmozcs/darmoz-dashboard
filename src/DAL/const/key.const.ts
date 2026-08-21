@@ -1,9 +1,11 @@
-export const EXAMPLE_LIST = "EXAMPLE_LIST";
-export const EXAMPLE_DETAIL = "EXAMPLE_DETAIL";
-
 export const AUTH_SESSION = "AUTH_SESSION";
 
 export const USER_LIST = "USER_LIST";
-export const USER_DETAIL = "USER_DETAIL";
 
 export const APPLICATION_LIST = "APPLICATION_LIST";
+
+export const ROLE_LIST = "ROLE_LIST";
+
+export const ROLE_PERMISSION_LIST = "ROLE_PERMISSION_LIST";
+
+export const AUDIT_LOG_LIST = "AUDIT_LOG_LIST";

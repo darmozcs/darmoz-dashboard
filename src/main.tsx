@@ -1,5 +1,7 @@
 import { config } from "@/config";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import "@mantine/notifications/styles.css";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "mantine-datatable/styles.layer.css";
 import React from "react";

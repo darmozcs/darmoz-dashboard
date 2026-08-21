@@ -13,6 +13,9 @@ export interface AuthResponse {
   refreshToken: string;
   tokenType: string;
   expiresIn: number;
+  emailVerified: boolean;
+  unverifiedLoginLimit: number;
+  unverifiedLoginCount: number;
 }
 
 export interface VerifyResponse {

@@ -4,35 +4,37 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { notifications } from "@mantine/notifications";
 import { useForm } from "react-hook-form";
 import {
-  editApplicationLimitSchema,
-  type EditApplicationLimitFormData,
-} from "../../schemas/editApplicationLimit.schema";
+  editApplicationSchema,
+  type EditApplicationFormData,
+} from "../../schemas/editApplication.schema";
 
-export const useEditApplicationLimitForm = (
+export const useEditApplicationForm = (
   application: Aplication | null,
   onSaved: () => void,
 ) => {
   const updateApplicationMutation = useUpdateApplicationMutation();
 
-  const form = useForm<EditApplicationLimitFormData>({
-    resolver: yupResolver(editApplicationLimitSchema),
-    values: { unverifiedLoginLimit: application?.unverifiedLoginLimit ?? 0 },
+  const form = useForm<EditApplicationFormData>({
+    resolver: yupResolver(editApplicationSchema),
+    values: {
+      serviceName: application?.serviceName ?? "",
+      name: application?.name ?? "",
+      description: application?.description ?? "",
+      unverifiedLoginLimit: application?.unverifiedLoginLimit ?? 0,
+    },
   });
 
-  const handleSubmit = (data: EditApplicationLimitFormData) => {
+  const handleSubmit = (data: EditApplicationFormData) => {
     if (!application) return;
 
     updateApplicationMutation.mutate(
-      {
-        id: application.id,
-        payload: { unverifiedLoginLimit: data.unverifiedLoginLimit },
-      },
+      { id: application.id, payload: data },
       {
         onSuccess: () => {
           notifications.show({
             color: "green",
             title: "Success",
-            message: "Unverified login limit updated",
+            message: "Application updated",
           });
           onSaved();
         },

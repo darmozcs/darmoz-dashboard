@@ -8,6 +8,13 @@ export interface MockUser {
 
 export const MOCK_USERS: MockUser[] = [
   {
+    id: "5e8f1a2b-3c4d-4e5f-9a8b-7c6d5e4f3a2b",
+    email: "super@darmoz.com",
+    password: "Super12345!",
+    roles: ["SUPER"],
+    enabled: true,
+  },
+  {
     id: "0f3a2b1c-4d5e-4f6a-8b7c-9d0e1f2a3b4c",
     email: "demo@darmoz.com",
     password: "Demo12345!",

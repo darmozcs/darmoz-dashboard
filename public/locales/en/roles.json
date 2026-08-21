@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "addRole": "Add role"
+  },
+  "master": {
+    "application": "Application",
+    "name": "Name",
+    "description": "Description",
+    "createdAt": "Created at"
+  },
+  "createTitle": "Create role",
+  "createSave": "Create",
+  "deleteTitle": "Delete role",
+  "deleteMessage": "Are you sure you want to delete \"{{name}}\"?",
+  "deleteSuccess": "Role deleted"
+}

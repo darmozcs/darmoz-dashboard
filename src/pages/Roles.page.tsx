@@ -1,8 +1,16 @@
-import { useTranslation } from "react-i18next";
-import { PageHeader } from "@/modules/common/components";
+import {
+  RolesMasterHeaderContainer,
+  RolesMasterTableContainer,
+} from "@/modules/roles/containers";
+import { Box, Stack } from "@mantine/core";
 
 export const Roles = () => {
-  const { t } = useTranslation("common");
-
-  return <PageHeader title={t("menu.roles", "Roles")} />;
+  return (
+    <Stack h="100%">
+      <RolesMasterHeaderContainer />
+      <Box flex={1} mih={0}>
+        <RolesMasterTableContainer />
+      </Box>
+    </Stack>
+  );
 };

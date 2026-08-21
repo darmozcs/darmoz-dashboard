@@ -1,0 +1,18 @@
+{
+  "actions": {
+    "addPermission": "Add permission"
+  },
+  "master": {
+    "application": "Application",
+    "role": "Role",
+    "service": "Service",
+    "httpMethod": "Method",
+    "endpointPattern": "Endpoint pattern",
+    "createdAt": "Created at"
+  },
+  "createTitle": "Create permission",
+  "createSave": "Create",
+  "deleteTitle": "Delete permission",
+  "deleteMessage": "Are you sure you want to delete this permission?",
+  "deleteSuccess": "Permission deleted"
+}

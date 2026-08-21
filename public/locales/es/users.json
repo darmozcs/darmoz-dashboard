@@ -6,9 +6,18 @@
     "email": "Correo electrónico",
     "status": "Estado",
     "emailVerified": "Email verificado",
+    "unverifiedLoginCount": "Logins sin verificar",
     "application": "Aplicación",
     "roles": "Roles",
     "createdAt": "Fecha de creación",
     "searchEmail": "Buscar por correo..."
-  }
+  },
+  "createTitle": "Crear usuario",
+  "createPassword": "Contraseña",
+  "createSave": "Crear",
+  "editRolesTitle": "Editar roles",
+  "editRolesSave": "Guardar",
+  "deleteTitle": "Eliminar usuario",
+  "deleteMessage": "¿Seguro que querés eliminar \"{{email}}\"?",
+  "deleteSuccess": "Usuario eliminado"
 }

@@ -41,6 +41,9 @@ const buildAuthResponse = (data: {
     refreshToken: createMockRefreshToken(),
     tokenType: "Bearer",
     expiresIn: 720,
+    emailVerified: true,
+    unverifiedLoginLimit: 0,
+    unverifiedLoginCount: 0,
   };
 };
 

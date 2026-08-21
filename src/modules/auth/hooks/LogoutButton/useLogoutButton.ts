@@ -1,14 +1,11 @@
-import { useNavigate } from "@tanstack/react-router";
 import { useLogoutMutation } from "@/DAL/auth/mutations/useLogout.mutation";
-import { useUserStore } from "@/store";
+import { forceLogout, tokenStorage } from "@/libs";
 
 export const useLogoutButton = () => {
-  const navigate = useNavigate();
-  const clearUser = useUserStore((s) => s.clearUser);
   const logoutMutation = useLogoutMutation();
 
   const handleLogout = async () => {
-    const refreshToken = localStorage.getItem("refreshToken");
+    const refreshToken = tokenStorage.getRefresh();
     if (refreshToken) {
       try {
         await logoutMutation.mutateAsync({ refreshToken });
@@ -16,10 +13,7 @@ export const useLogoutButton = () => {
         // Ignore logout errors
       }
     }
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    clearUser();
-    navigate({ to: "/" });
+    forceLogout();
   };
 
   return { handleLogout };

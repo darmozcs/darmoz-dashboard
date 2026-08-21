@@ -25,7 +25,8 @@
     "submit": "Sign in"
   },
   "auth": {
-    "verifying": "Verifying session..."
+    "verifying": "Verifying session...",
+    "notAuthorized": "Your account does not have administrator permissions"
   },
   "modals": {
     "labels": {

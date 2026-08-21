@@ -1,9 +1,10 @@
-import { useApplicationsQuery } from "@/DAL";
+import { useApplicationsQuery, useDeleteApplicationMutation } from "@/DAL";
 import { DataTable } from "@/libs/ui/table";
 import type { Aplication } from "@/models";
+import { notifications } from "@mantine/notifications";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { EditApplicationLimitModal } from "../../components/EditApplicationLimitModal/EditApplicationLimitModal";
+import { EditApplicationModal } from "../../components/EditApplicationModal/EditApplicationModal";
 import { getApplicationsTableColumns } from "../../const/applicationsTableColumns.const";
 
 export const ApplicationsMasterTableContainer = () => {
@@ -12,9 +13,31 @@ export const ApplicationsMasterTableContainer = () => {
     useState<Aplication | null>(null);
 
   const { data, isLoading } = useApplicationsQuery();
+  const deleteApplicationMutation = useDeleteApplicationMutation();
   const applications = data?.data ?? [];
 
-  const columns = getApplicationsTableColumns(t, setSelectedApplication);
+  const handleDelete = (application: Aplication) => {
+    deleteApplicationMutation.mutate(application.id, {
+      onSuccess: () => {
+        notifications.show({
+          color: "green",
+          title: "Success",
+          message: t("deleteSuccess", "Application deleted"),
+        });
+      },
+      onError: (error: unknown) => {
+        const message =
+          (error as { response?: { data?: { message?: string } } })?.response
+            ?.data?.message || "Delete failed";
+        notifications.show({ color: "red", title: "Error", message });
+      },
+    });
+  };
+
+  const columns = getApplicationsTableColumns(t, {
+    onEdit: setSelectedApplication,
+    onDelete: handleDelete,
+  });
 
   return (
     <>
@@ -23,7 +46,7 @@ export const ApplicationsMasterTableContainer = () => {
         columns={columns}
         fetching={isLoading}
       />
-      <EditApplicationLimitModal
+      <EditApplicationModal
         application={selectedApplication}
         onClose={() => setSelectedApplication(null)}
       />

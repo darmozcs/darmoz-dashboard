@@ -1,0 +1,18 @@
+{
+  "actions": {
+    "addPermission": "Agregar permiso"
+  },
+  "master": {
+    "application": "Aplicación",
+    "role": "Rol",
+    "service": "Servicio",
+    "httpMethod": "Método",
+    "endpointPattern": "Patrón de endpoint",
+    "createdAt": "Fecha de creación"
+  },
+  "createTitle": "Crear permiso",
+  "createSave": "Crear",
+  "deleteTitle": "Eliminar permiso",
+  "deleteMessage": "¿Seguro que querés eliminar este permiso?",
+  "deleteSuccess": "Permiso eliminado"
+}

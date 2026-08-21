@@ -1,9 +1,19 @@
 {
+  "actions": {
+    "addApplication": "Add application"
+  },
   "master": {
+    "serviceName": "Service name",
     "name": "Name",
     "description": "Description",
     "unverifiedLoginLimit": "Unverified login limit"
   },
-  "editLimitTitle": "Edit unverified login limit",
-  "editLimitSave": "Save"
+  "editTitle": "Edit application",
+  "editSave": "Save",
+  "createTitle": "Create application",
+  "createSave": "Create",
+  "createAutoRoleNote": "A base USER role will be created automatically for this application.",
+  "deleteTitle": "Delete application",
+  "deleteMessage": "Are you sure you want to delete \"{{name}}\"?",
+  "deleteSuccess": "Application deleted"
 }

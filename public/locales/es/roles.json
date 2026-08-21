@@ -1,0 +1,16 @@
+{
+  "actions": {
+    "addRole": "Agregar rol"
+  },
+  "master": {
+    "application": "Aplicación",
+    "name": "Nombre",
+    "description": "Descripción",
+    "createdAt": "Fecha de creación"
+  },
+  "createTitle": "Crear rol",
+  "createSave": "Crear",
+  "deleteTitle": "Eliminar rol",
+  "deleteMessage": "¿Seguro que querés eliminar \"{{name}}\"?",
+  "deleteSuccess": "Rol eliminado"
+}
