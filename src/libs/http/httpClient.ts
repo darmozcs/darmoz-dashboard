@@ -8,6 +8,7 @@ export const httpClient = axios.create({
   timeout: 15_000,
   headers: {
     "Content-Type": "application/json",
+    API_ID: config.VITE_API_ID,
   },
 });
 

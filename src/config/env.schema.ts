@@ -3,6 +3,7 @@ import * as yup from "yup";
 const envSchema = yup.object({
   VITE_ENABLE_MOCKS: yup.string().oneOf(["true", "false"]).default("false"),
   VITE_API_BASE_URL: yup.string().default(""),
+  VITE_API_ID: yup.string().required("VITE_API_ID is required"),
   VITE_TOKEN_REFRESH_INTERVAL_MS: yup
     .number()
     .default(300000)
@@ -12,6 +13,7 @@ const envSchema = yup.object({
 const rawEnv = {
   VITE_ENABLE_MOCKS: import.meta.env.VITE_ENABLE_MOCKS ?? "false",
   VITE_API_BASE_URL: import.meta.env.VITE_API_BASE_URL,
+  VITE_API_ID: import.meta.env.VITE_API_ID,
   VITE_TOKEN_REFRESH_INTERVAL_MS: Number(
     import.meta.env.VITE_TOKEN_REFRESH_INTERVAL_MS ?? "300000",
   ),
