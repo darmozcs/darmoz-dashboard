@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 const envSchema = yup.object({
   VITE_ENABLE_MOCKS: yup.string().oneOf(["true", "false"]).default("false"),
-  VITE_API_BASE_URL: yup.string().required("VITE_API_BASE_URL is required"),
+  VITE_API_BASE_URL: yup.string().default(""),
   VITE_TOKEN_REFRESH_INTERVAL_MS: yup
     .number()
     .default(300000)
