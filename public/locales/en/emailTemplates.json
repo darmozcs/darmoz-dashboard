@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "addTemplate": "Add template"
+  },
+  "master": {
+    "code": "Code",
+    "name": "Name",
+    "subject": "Subject",
+    "bodyHtml": "HTML body",
+    "bodyText": "Plain text body (optional)",
+    "active": "Active",
+    "updatedAt": "Updated at"
+  },
+  "codeHint": "Used as templateCode when scheduling an email",
+  "placeholderHint": "Supports ${variable} placeholders",
+  "createTitle": "Create template",
+  "createSave": "Create",
+  "editTitle": "Edit template",
+  "editSave": "Save",
+  "deleteTitle": "Delete template",
+  "deleteMessage": "Are you sure you want to delete \"{{name}}\"?",
+  "deleteSuccess": "Template deleted"
+}

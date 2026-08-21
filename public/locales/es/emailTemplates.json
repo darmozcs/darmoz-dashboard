@@ -1,0 +1,23 @@
+{
+  "actions": {
+    "addTemplate": "Agregar template"
+  },
+  "master": {
+    "code": "Código",
+    "name": "Nombre",
+    "subject": "Asunto",
+    "bodyHtml": "Cuerpo HTML",
+    "bodyText": "Cuerpo en texto plano (opcional)",
+    "active": "Activo",
+    "updatedAt": "Última actualización"
+  },
+  "codeHint": "Se usa como templateCode al programar un correo",
+  "placeholderHint": "Soporta placeholders del tipo ${variable}",
+  "createTitle": "Crear template",
+  "createSave": "Crear",
+  "editTitle": "Editar template",
+  "editSave": "Guardar",
+  "deleteTitle": "Eliminar template",
+  "deleteMessage": "¿Seguro que querés eliminar \"{{name}}\"?",
+  "deleteSuccess": "Template eliminado"
+}

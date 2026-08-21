@@ -1,0 +1,18 @@
+{
+  "master": {
+    "sentAt": "Sent at",
+    "recipient": "Recipient",
+    "subject": "Subject",
+    "accion": "Action"
+  },
+  "filters": {
+    "recipient": "Search by recipient...",
+    "application": "Application",
+    "accion": "Action",
+    "from": "From",
+    "to": "To"
+  },
+  "resendTitle": "Resend email",
+  "resendMessage": "Resend this email to \"{{recipient}}\"?",
+  "resendSuccess": "Email resent"
+}

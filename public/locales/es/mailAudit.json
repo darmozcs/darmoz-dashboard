@@ -1,0 +1,18 @@
+{
+  "master": {
+    "sentAt": "Enviado",
+    "recipient": "Destinatario",
+    "subject": "Asunto",
+    "accion": "Acción"
+  },
+  "filters": {
+    "recipient": "Buscar por destinatario...",
+    "application": "Aplicación",
+    "accion": "Acción",
+    "from": "Desde",
+    "to": "Hasta"
+  },
+  "resendTitle": "Reenviar correo",
+  "resendMessage": "¿Reenviar este correo a \"{{recipient}}\"?",
+  "resendSuccess": "Correo reenviado"
+}

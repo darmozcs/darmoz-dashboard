@@ -1,0 +1,20 @@
+{
+  "actions": {
+    "addApplication": "Add application"
+  },
+  "master": {
+    "name": "Name",
+    "active": "Active",
+    "createdAt": "Created at"
+  },
+  "clientIdNote": "The generated ID is the value this application must send in the X-Client-Id header to use the email sending API.",
+  "copyId": "Copy ID",
+  "copied": "Copied",
+  "createTitle": "Create application",
+  "createSave": "Create",
+  "editTitle": "Edit application",
+  "editSave": "Save",
+  "deleteTitle": "Delete application",
+  "deleteMessage": "Are you sure you want to delete \"{{name}}\"?",
+  "deleteSuccess": "Application deleted"
+}

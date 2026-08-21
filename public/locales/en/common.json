@@ -9,12 +9,17 @@
     "description": "Marketplace platform"
   },
   "menu": {
-    "dashboard": "Dashboard",
+    "auth": "Authentication",
+    "mail": "Mail",
     "user": "Users",
     "roles": "Roles",
     "permissions": "Permissions",
     "applications": "Applications",
     "audit": "Audit",
+    "mailAudit": "Audit",
+    "scheduledEmails": "Scheduled emails",
+    "templates": "Templates",
+    "mailApplications": "Applications",
     "logout": "Logout"
   },
   "login": {
@@ -43,5 +48,7 @@
       "title": "Error loading data",
       "description": "The data could not be loaded. Please try again."
     }
-  }
+  },
+  "yes": "Yes",
+  "no": "No"
 }

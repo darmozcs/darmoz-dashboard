@@ -10,7 +10,8 @@
     "application": "Aplicación",
     "roles": "Roles",
     "createdAt": "Fecha de creación",
-    "searchEmail": "Buscar por correo..."
+    "searchEmail": "Buscar por correo...",
+    "filterApplication": "Filtrar por aplicación"
   },
   "createTitle": "Crear usuario",
   "createPassword": "Contraseña",

@@ -4,3 +4,7 @@ export * from "./applications";
 export * from "./roles";
 export * from "./rolePermissions";
 export * from "./audit";
+export * from "./mailAudit";
+export * from "./scheduledEmails";
+export * from "./emailTemplates";
+export * from "./mailClientApplications";

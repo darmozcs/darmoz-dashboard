@@ -10,7 +10,7 @@ import { getUsersTableColumns } from "../../const/usersTableColumns.const";
 
 export const UsersMasterTableContainer = () => {
   const { t } = useTranslation("users");
-  const { search, page, limit, setPage, setLimit } =
+  const { search, applicationId, page, limit, setPage, setLimit } =
     useUsersMasterFiltersStore();
   const [selectedUserForRoles, setSelectedUserForRoles] =
     useState<User | null>(null);
@@ -23,11 +23,14 @@ export const UsersMasterTableContainer = () => {
 
   const filteredUsers = useMemo(() => {
     const normalizedSearch = search.trim().toLowerCase();
-    if (!normalizedSearch) return allUsers;
-    return allUsers.filter((user) =>
-      user.email.toLowerCase().includes(normalizedSearch),
-    );
-  }, [allUsers, search]);
+    return allUsers.filter((user) => {
+      const matchesSearch =
+        !normalizedSearch || user.email.toLowerCase().includes(normalizedSearch);
+      const matchesApplication =
+        !applicationId || user.applicationId === applicationId;
+      return matchesSearch && matchesApplication;
+    });
+  }, [allUsers, search, applicationId]);
 
   const pagedUsers = useMemo(() => {
     const start = (page - 1) * limit;
@@ -66,11 +69,15 @@ export const UsersMasterTableContainer = () => {
     });
   };
 
-  const columns = getUsersTableColumns(t, search, {
-    onToggleEnabled: handleToggleEnabled,
-    onEditRoles: setSelectedUserForRoles,
-    onDelete: handleDelete,
-  });
+  const columns = getUsersTableColumns(
+    t,
+    { search, applicationId },
+    {
+      onToggleEnabled: handleToggleEnabled,
+      onEditRoles: setSelectedUserForRoles,
+      onDelete: handleDelete,
+    },
+  );
 
   return (
     <>

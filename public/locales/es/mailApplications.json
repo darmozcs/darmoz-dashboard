@@ -1,0 +1,20 @@
+{
+  "actions": {
+    "addApplication": "Agregar aplicación"
+  },
+  "master": {
+    "name": "Nombre",
+    "active": "Activa",
+    "createdAt": "Fecha de creación"
+  },
+  "clientIdNote": "El ID generado es el valor que esta aplicación debe enviar en el header X-Client-Id para usar la API de envío de correos.",
+  "copyId": "Copiar ID",
+  "copied": "Copiado",
+  "createTitle": "Crear aplicación",
+  "createSave": "Crear",
+  "editTitle": "Editar aplicación",
+  "editSave": "Guardar",
+  "deleteTitle": "Eliminar aplicación",
+  "deleteMessage": "¿Seguro que querés eliminar \"{{name}}\"?",
+  "deleteSuccess": "Aplicación eliminada"
+}
