@@ -6,7 +6,12 @@
     "serviceName": "Service name",
     "name": "Name",
     "description": "Description",
-    "unverifiedLoginLimit": "Unverified login limit"
+    "unverifiedLoginLimit": "Unverified login limit",
+    "accessTokenTtl": "Token duration after login (min)",
+    "refreshedAccessTokenTtl": "Token duration after refresh (min)",
+    "tokenTtlHelp": "Empty = default (12 min)",
+    "tokenTtl": "Token (login / refresh)",
+    "tokenTtlDefault": "Default"
   },
   "editTitle": "Edit application",
   "editSave": "Save",

@@ -5,6 +5,11 @@ import { ActionIcon, Group } from "@mantine/core";
 import { IconPencil, IconTrash } from "@tabler/icons-react";
 import type { TFunction } from "i18next";
 
+const formatTtl = (seconds: number | null, t: TFunction) =>
+  seconds == null
+    ? t("master.tokenTtlDefault", "Default")
+    : `${Math.round(seconds / 60)} min`;
+
 interface ApplicationsTableActions {
   onEdit: (application: Aplication) => void;
   onDelete: (application: Aplication) => void;
@@ -33,6 +38,20 @@ export const getApplicationsTableColumns = (
       accessor: "unverifiedLoginLimit",
       title: t("master.unverifiedLoginLimit", "Unverified login limit"),
       width: 200,
+    },
+    {
+      accessor: "accessTokenTtlSeconds",
+      title: t("master.tokenTtl", "Token (login / refresh)"),
+      width: 190,
+      render: (application) =>
+        application.accessTokenTtlSeconds == null &&
+        application.refreshedAccessTokenTtlSeconds == null
+          ? t("master.tokenTtlDefault", "Default")
+          : `${formatTtl(application.accessTokenTtlSeconds, t)} / ${formatTtl(
+              application.refreshedAccessTokenTtlSeconds ??
+                application.accessTokenTtlSeconds,
+              t,
+            )}`,
     },
     {
       accessor: "actions",

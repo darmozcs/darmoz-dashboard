@@ -11,6 +11,8 @@ export interface CreateApplicationPayload {
   name: string;
   description?: string;
   unverifiedLoginLimit?: number;
+  accessTokenTtlSeconds?: number;
+  refreshedAccessTokenTtlSeconds?: number;
 }
 
 export interface UpdateApplicationPayload {
@@ -18,6 +20,9 @@ export interface UpdateApplicationPayload {
   name?: string;
   description?: string;
   unverifiedLoginLimit?: number;
+  // 0 = volver al valor por defecto.
+  accessTokenTtlSeconds?: number;
+  refreshedAccessTokenTtlSeconds?: number;
 }
 
 export const getApplicationsService = async (): Promise<

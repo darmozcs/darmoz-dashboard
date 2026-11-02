@@ -10,6 +10,7 @@ import {
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useCreateApplicationForm } from "../../hooks/useCreateApplicationForm/useCreateApplicationForm";
+import { TokenTtlFields } from "../TokenTtlFields/TokenTtlFields";
 
 interface CreateApplicationModalProps {
   opened: boolean;
@@ -86,6 +87,10 @@ export const CreateApplicationModal = ({
                 error={form.formState.errors.unverifiedLoginLimit?.message}
               />
             )}
+          />
+          <TokenTtlFields
+            control={form.control}
+            errors={form.formState.errors}
           />
           <Button type="submit" loading={isLoading}>
             {t("createSave", "Create")}

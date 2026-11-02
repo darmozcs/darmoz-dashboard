@@ -7,6 +7,10 @@ import {
   editApplicationSchema,
   type EditApplicationFormData,
 } from "../../schemas/editApplication.schema";
+import {
+  minutesToSeconds,
+  secondsToMinutes,
+} from "../../schemas/tokenTtl.schema";
 
 export const useEditApplicationForm = (
   application: Aplication | null,
@@ -21,14 +25,31 @@ export const useEditApplicationForm = (
       name: application?.name ?? "",
       description: application?.description ?? "",
       unverifiedLoginLimit: application?.unverifiedLoginLimit ?? 0,
+      accessTokenTtlMinutes: secondsToMinutes(application?.accessTokenTtlSeconds),
+      refreshedAccessTokenTtlMinutes: secondsToMinutes(
+        application?.refreshedAccessTokenTtlSeconds,
+      ),
     },
   });
 
   const handleSubmit = (data: EditApplicationFormData) => {
     if (!application) return;
 
+    const {
+      accessTokenTtlMinutes,
+      refreshedAccessTokenTtlMinutes,
+      ...fields
+    } = data;
+    // Vacío se manda como 0: el backend vuelve al valor por defecto.
+    const payload = {
+      ...fields,
+      accessTokenTtlSeconds: minutesToSeconds(accessTokenTtlMinutes) ?? 0,
+      refreshedAccessTokenTtlSeconds:
+        minutesToSeconds(refreshedAccessTokenTtlMinutes) ?? 0,
+    };
+
     updateApplicationMutation.mutate(
-      { id: application.id, payload: data },
+      { id: application.id, payload },
       {
         onSuccess: () => {
           notifications.show({

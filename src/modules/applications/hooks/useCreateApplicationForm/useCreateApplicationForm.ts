@@ -6,6 +6,7 @@ import {
   createApplicationSchema,
   type CreateApplicationFormData,
 } from "../../schemas/createApplication.schema";
+import { minutesToSeconds } from "../../schemas/tokenTtl.schema";
 
 export const useCreateApplicationForm = (onSaved: () => void) => {
   const createApplicationMutation = useCreateApplicationMutation();
@@ -17,11 +18,26 @@ export const useCreateApplicationForm = (onSaved: () => void) => {
       name: "",
       description: "",
       unverifiedLoginLimit: 0,
+      accessTokenTtlMinutes: null,
+      refreshedAccessTokenTtlMinutes: null,
     },
   });
 
   const handleSubmit = (data: CreateApplicationFormData) => {
-    createApplicationMutation.mutate(data, {
+    const {
+      accessTokenTtlMinutes,
+      refreshedAccessTokenTtlMinutes,
+      ...fields
+    } = data;
+    // Vacío = sin valor propio (usa el de darmoz-auth).
+    const payload = {
+      ...fields,
+      accessTokenTtlSeconds: minutesToSeconds(accessTokenTtlMinutes) ?? undefined,
+      refreshedAccessTokenTtlSeconds:
+        minutesToSeconds(refreshedAccessTokenTtlMinutes) ?? undefined,
+    };
+
+    createApplicationMutation.mutate(payload, {
       onSuccess: () => {
         notifications.show({
           color: "green",

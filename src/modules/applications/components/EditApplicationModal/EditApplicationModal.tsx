@@ -10,6 +10,7 @@ import {
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useEditApplicationForm } from "../../hooks/useEditApplicationForm/useEditApplicationForm";
+import { TokenTtlFields } from "../TokenTtlFields/TokenTtlFields";
 
 interface EditApplicationModalProps {
   application: Aplication | null;
@@ -83,6 +84,10 @@ export const EditApplicationModal = ({
                 error={form.formState.errors.unverifiedLoginLimit?.message}
               />
             )}
+          />
+          <TokenTtlFields
+            control={form.control}
+            errors={form.formState.errors}
           />
           <Button type="submit" loading={isLoading}>
             {t("editSave", "Save")}

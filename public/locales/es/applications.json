@@ -6,7 +6,12 @@
     "serviceName": "Nombre de servicio",
     "name": "Nombre",
     "description": "Descripción",
-    "unverifiedLoginLimit": "Límite de logins sin verificar"
+    "unverifiedLoginLimit": "Límite de logins sin verificar",
+    "accessTokenTtl": "Duración del token al iniciar sesión (min)",
+    "refreshedAccessTokenTtl": "Duración del token al renovar (min)",
+    "tokenTtlHelp": "Vacío = valor por defecto (12 min)",
+    "tokenTtl": "Token (login / renovación)",
+    "tokenTtlDefault": "Por defecto"
   },
   "editTitle": "Editar aplicación",
   "editSave": "Guardar",
