@@ -52,8 +52,10 @@ export const TokenTtlFields = <T extends TokenTtlFormValues>({
               max={1440}
               allowDecimal={false}
               allowNegative={false}
-              {...field}
-              value={field.value ?? ""}
+              name={field.name}
+              ref={field.ref}
+              onBlur={field.onBlur}
+              value={(field.value as number | null) ?? ""}
               onChange={(value) => field.onChange(value === "" ? null : value)}
               error={errors[name]?.message as string | undefined}
             />
