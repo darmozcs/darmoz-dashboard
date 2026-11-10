@@ -1,10 +1,17 @@
 import type { SidebarMenuItem } from "@/modules/common/components";
 import {
   IconAppWindow,
+  IconBrandMeta,
+  IconBrandWhatsapp,
   IconCalendarTime,
   IconClipboardCheck,
+  IconListDetails,
   IconLock,
   IconMail,
+  IconMessages,
+  IconPhone,
+  IconPlugConnected,
+  IconRobot,
   IconShieldLock,
   IconTemplate,
   IconUser,
@@ -67,6 +74,42 @@ const MENU_ITEMS: SidebarMenuItem[] = [
         label: "menu.mailApplications",
         to: "/mail/applications",
         icon: IconAppWindow,
+      },
+    ],
+  },
+  {
+    label: "menu.whatsapp",
+    icon: IconBrandWhatsapp,
+    children: [
+      {
+        label: "menu.waAccounts",
+        to: "/whatsapp/accounts",
+        icon: IconBrandMeta,
+      },
+      {
+        label: "menu.waNumbers",
+        to: "/whatsapp/numbers",
+        icon: IconPhone,
+      },
+      {
+        label: "menu.waIntegrations",
+        to: "/whatsapp/integrations",
+        icon: IconPlugConnected,
+      },
+      {
+        label: "menu.waBots",
+        to: "/whatsapp/bots",
+        icon: IconRobot,
+      },
+      {
+        label: "menu.waConversations",
+        to: "/whatsapp/conversations",
+        icon: IconMessages,
+      },
+      {
+        label: "menu.waMessageLogs",
+        to: "/whatsapp/message-logs",
+        icon: IconListDetails,
       },
     ],
   },

@@ -25,6 +25,7 @@ void i18n
       "scheduledEmails",
       "emailTemplates",
       "mailApplications",
+      "whatsapp",
     ],
     backend: {
       loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,

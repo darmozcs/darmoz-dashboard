@@ -20,6 +20,13 @@
     "scheduledEmails": "Correos programados",
     "templates": "Templates",
     "mailApplications": "Aplicaciones",
+    "whatsapp": "WhatsApp",
+    "waAccounts": "Cuentas de Meta",
+    "waNumbers": "Números",
+    "waIntegrations": "Integraciones",
+    "waBots": "Bots",
+    "waConversations": "Conversaciones",
+    "waMessageLogs": "Logs de mensajes",
     "logout": "Cerrar sesión"
   },
   "login": {

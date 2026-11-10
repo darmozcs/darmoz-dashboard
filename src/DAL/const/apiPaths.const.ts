@@ -49,3 +49,68 @@ export const MAIL_CLIENT_APPLICATIONS_PATH =
   MAIL_BASE_PATH + "/client-applications";
 export const MAIL_CLIENT_APPLICATION_DETAIL_PATH = ({ id }: { id: string }) =>
   `${MAIL_CLIENT_APPLICATIONS_PATH}/${id}`;
+
+// darmoz-whatsapp: servicio separado, context-path "/darmoz-whatsapp",
+// protegido con el mismo JWT del dashboard (rol SUPER), errores RFC7807.
+export const WA_BASE_PATH = "/darmoz-whatsapp";
+
+export const WA_ACCOUNTS_PATH = WA_BASE_PATH + "/accounts";
+export const WA_ACCOUNT_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${WA_ACCOUNTS_PATH}/${id}`;
+export const WA_ACCOUNT_ACTION_PATH = ({
+  id,
+  action,
+}: {
+  id: string;
+  action:
+    | "validate"
+    | "sync-numbers"
+    | "subscribe"
+    | "webhook-info"
+    | "regenerate-verify-token";
+}) => `${WA_ACCOUNTS_PATH}/${id}/${action}`;
+
+export const WA_PHONE_NUMBERS_PATH = WA_BASE_PATH + "/phone-numbers";
+export const WA_PHONE_NUMBER_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${WA_PHONE_NUMBERS_PATH}/${id}`;
+export const WA_PHONE_NUMBER_TEST_MESSAGE_PATH = ({ id }: { id: string }) =>
+  `${WA_PHONE_NUMBERS_PATH}/${id}/test-message`;
+
+export const WA_INTEGRATIONS_PATH = WA_BASE_PATH + "/integrations";
+export const WA_INTEGRATION_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${WA_INTEGRATIONS_PATH}/${id}`;
+export const WA_INTEGRATION_TEST_PATH = ({ id }: { id: string }) =>
+  `${WA_INTEGRATIONS_PATH}/${id}/test`;
+
+export const WA_BOTS_PATH = WA_BASE_PATH + "/bots";
+export const WA_BOT_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${WA_BOTS_PATH}/${id}`;
+
+export const WA_FLOWS_PATH = ({ botId }: { botId: string }) =>
+  `${WA_BOTS_PATH}/${botId}/flows`;
+export const WA_FLOW_DETAIL_PATH = ({
+  botId,
+  flowId,
+}: {
+  botId: string;
+  flowId: string;
+}) => `${WA_FLOWS_PATH({ botId })}/${flowId}`;
+export const WA_FLOW_ACTION_PATH = ({
+  botId,
+  flowId,
+  action,
+}: {
+  botId: string;
+  flowId: string;
+  action: "draft" | "validate" | "publish";
+}) => `${WA_FLOW_DETAIL_PATH({ botId, flowId })}/${action}`;
+
+export const WA_CONVERSATIONS_PATH = WA_BASE_PATH + "/conversations";
+export const WA_CONVERSATION_DETAIL_PATH = ({ id }: { id: string }) =>
+  `${WA_CONVERSATIONS_PATH}/${id}`;
+export const WA_CONVERSATION_MESSAGES_PATH = ({ id }: { id: string }) =>
+  `${WA_CONVERSATIONS_PATH}/${id}/messages`;
+export const WA_CONVERSATION_RESET_PATH = ({ id }: { id: string }) =>
+  `${WA_CONVERSATIONS_PATH}/${id}/reset`;
+
+export const WA_MESSAGE_LOGS_PATH = WA_BASE_PATH + "/message-logs";

@@ -20,6 +20,13 @@
     "scheduledEmails": "Scheduled emails",
     "templates": "Templates",
     "mailApplications": "Applications",
+    "whatsapp": "WhatsApp",
+    "waAccounts": "Meta accounts",
+    "waNumbers": "Numbers",
+    "waIntegrations": "Integrations",
+    "waBots": "Bots",
+    "waConversations": "Conversations",
+    "waMessageLogs": "Message logs",
     "logout": "Logout"
   },
   "login": {

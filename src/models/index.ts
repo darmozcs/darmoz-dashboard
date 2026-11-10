@@ -9,3 +9,4 @@ export * from "./permission";
 export * from "./role";
 export * from "./scheduledEmail";
 export * from "./user";
+export * from "./whatsapp";
